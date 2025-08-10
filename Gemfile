@@ -63,4 +63,4 @@ group :test do
 end
 
 
-gem "htmlbeautifer"
+gem "htmlbeautifier"
