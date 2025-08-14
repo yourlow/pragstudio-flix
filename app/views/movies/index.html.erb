@@ -1,5 +1,22 @@
-<li>
-  <% @movies.each do |movie| %>
-    <ul><%= movie %></ul>
-  <% end %>
-</li>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Rating</th>
+      <th>Revenue</th>
+      <th>Description</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.rating %></td>
+        <td><%= revenue(movie) %></td>
+        <td><%= truncate movie.description, length: 30 %></td>
+        <td><%= prettyDate(movie) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
