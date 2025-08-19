@@ -1,22 +1,15 @@
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Rating</th>
-      <th>Revenue</th>
-      <th>Description</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.rating %></td>
-        <td><%= revenue(movie) %></td>
-        <td><%= truncate movie.description, length: 30 %></td>
-        <td><%= prettyDate(movie) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @movies.each do |movie| %>
+  <section class="movie">
+    <div class="summary">
+      <h2>
+        <%= movie.title %>
+      </h2>
+      <h3>
+        <%= revenue(movie) %>
+      </h3>
+      <p>
+        <%= truncate(movie.description, length: 150, separator: ' ') %>
+      </p>
+    </div>
+  </section>
+<% end %>
