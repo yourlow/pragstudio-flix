@@ -1,0 +1,13 @@
+<section class="movie-details">
+    <div class="details">
+      <h2>
+        <%= @movie.title %>
+      </h2>
+      <h3>
+        <%= revenue(@movie) %>
+      </h3>
+      <p>
+        <%= truncate(@movie.description, length: 150, separator: ' ') %>
+      </p>
+    </div>
+  </section>
