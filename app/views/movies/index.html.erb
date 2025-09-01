@@ -2,13 +2,15 @@
   <section class="movie">
     <div class="summary">
       <h2>
-        <%= movie.title %>
+        <%= link_to movie.title, movie %>
       </h2>
       <h3>
         <%= revenue(movie) %>
       </h3>
       <p>
         <%= truncate(movie.description, length: 150, separator: ' ') %>
+      </p>
+      <p>
       </p>
     </div>
   </section>

@@ -1,13 +1,16 @@
 <section class="movie-details">
-    <div class="details">
-      <h2>
-        <%= @movie.title %>
-      </h2>
-      <h3>
-        <%= revenue(@movie) %>
-      </h3>
-      <p>
-        <%= truncate(@movie.description, length: 150, separator: ' ') %>
-      </p>
-    </div>
-  </section>
+  <div class="details">
+    <h2>
+      <%= @movie.title %>
+    </h2>
+    <h3>
+      <%= revenue(@movie) %>
+    </h3>
+    <p>
+      <%= truncate(@movie.description, length: 150, separator: ' ') %>
+    </p>
+  </div>
+</section>
+<section class="admin">
+  <%= link_to "Edit", edit_movie_path(@event), class: "button"%>
+</section>
