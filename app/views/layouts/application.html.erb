@@ -20,9 +20,7 @@
   <body>
     <%= render "layouts/header" %>
     <div class="content">
-      <div class="flash notice">
-        <%= flash[:notice]%>
-      </div>
+      <%= render "layouts/flash" %>
       <%= yield %>
     </div>
     <%= render "layouts/footer" %>

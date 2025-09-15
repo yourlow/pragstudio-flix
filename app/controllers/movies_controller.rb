@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
 
     if @movie.update(movie_params)
+      flash[:notice] = "Event successfully updated!"
       redirect_to @movie
     else
       render :edit, status: :unprocessable_entity
@@ -30,7 +31,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
 
     if @movie.save
-      return redirect_to @movie
+      return redirect_to @movie, notice: "Event sucessfully created!"
     else
       return render :new, status: :unprocessable_entity
     end
