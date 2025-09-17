@@ -6,6 +6,7 @@
     <div class="summary">
       <h2>
         <%= link_to movie.title, movie %>
+        <%= link_to "Reviews", movie_reviews_path(movie.id), class: "btn" %>
       </h2>
       <h3>
         <%= revenue(movie) %>

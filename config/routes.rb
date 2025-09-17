@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :reviews
   root "movies#index"
   get "up" => "rails/health#show", as: :rails_health_check
-  resources :movies
+  resources :movies do
+    resources :reviews
+  end
 end

@@ -1,8 +1,9 @@
-Movie.create!([
+# db/seeds.rb
+
+movies = Movie.create!([
   {
     title: 'Avengers: Endgame',
-    description:
-    %(
+    description: %(
       After the devastating events of Avengers: Infinity War, the universe
       is in ruins. With the help of remaining allies, the Avengers assemble
       once more in order to undo Thanos' actions and restore order to the universe.
@@ -16,8 +17,7 @@ Movie.create!([
   },
   {
     title: 'Captain Marvel',
-    description:
-    %(
+    description: %(
       Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.
     ).squish,
     released_on: "2019-03-08",
@@ -29,8 +29,7 @@ Movie.create!([
   },
   {
     title: 'Black Panther',
-    description:
-    %(
+    description: %(
       T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.
     ).squish,
     released_on: "2018-02-16",
@@ -42,8 +41,7 @@ Movie.create!([
   },
   {
     title: 'Avengers: Infinity War',
-    description:
-    %(
+    description: %(
       The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.
     ).squish,
     released_on: "2018-04-27",
@@ -55,8 +53,7 @@ Movie.create!([
   },
   {
     title: 'Green Lantern',
-    description:
-    %(
+    description: %(
       Reckless test pilot Hal Jordan is granted an alien ring that bestows him with otherworldly powers that inducts him into an intergalactic police force, the Green Lantern Corps.
     ).squish,
     released_on: "2011-06-17",
@@ -68,8 +65,7 @@ Movie.create!([
   },
   {
     title: 'Fantastic Four',
-    description:
-    %(
+    description: %(
       Four young outsiders teleport to an alternate and dangerous universe which alters their physical form in shocking ways. The four must learn to harness their new abilities and work together to save Earth from a former friend turned enemy.
     ).squish,
     released_on: "2015-08-07",
@@ -81,8 +77,7 @@ Movie.create!([
   },
   {
     title: 'Iron Man',
-    description:
-    %(
+    description: %(
       When wealthy industrialist Tony Stark is forced to build an
       armored suit after a life-threatening incident, he ultimately
       decides to use its technology to fight against evil.
@@ -96,8 +91,7 @@ Movie.create!([
   },
   {
     title: 'Superman',
-    description:
-    %(
+    description: %(
       An alien orphan is sent from his dying planet to Earth, where
       he grows up to become his adoptive home's first and greatest
       super-hero.
@@ -111,8 +105,7 @@ Movie.create!([
   },
   {
     title: 'Spider-Man',
-    description:
-    %(
+    description: %(
       When bitten by a genetically modified spider, a nerdy, shy, and
       awkward high school student gains spider-like abilities that he
       eventually must use to fight evil as a superhero after tragedy
@@ -127,8 +120,7 @@ Movie.create!([
   },
   {
     title: 'Batman',
-    description:
-    %(
+    description: %(
       The Dark Knight of Gotham City begins his war on crime with his
       first major enemy being the clownishly homicidal Joker.
     ).squish,
@@ -141,8 +133,7 @@ Movie.create!([
   },
   {
     title: "Catwoman",
-    description:
-    %(
+    description: %(
       Patience Philips seems destined to spend her life apologizing for taking up space. Despite her artistic ability she has a more than respectable career as a graphic designer.
     ).squish,
     released_on: "2004-07-23",
@@ -154,8 +145,7 @@ Movie.create!([
   },
   {
     title: "Wonder Woman",
-    description:
-    %(
+    description: %(
       When a pilot crashes and tells of conflict in the outside world, Diana, an Amazonian warrior in training, leaves home to fight a war, discovering her full powers and true destiny.
     ).squish,
     released_on: "2017-06-02",
@@ -166,3 +156,27 @@ Movie.create!([
     image_file_name: "wonder-woman.png"
   }
 ])
+
+# --- Reviews ---
+names = [ "Alice", "Bob", "Charlie", "Dana", "Eve", "Frank", "Grace", "Henry" ]
+comments = [
+  "Loved it! Would watch again.",
+  "Pretty good but dragged in parts.",
+  "Not my favorite, but well made.",
+  "Amazing visuals and story!",
+  "It was okay, a bit too long.",
+  "A masterpiece of superhero cinema.",
+  "Could have been better.",
+  "Exceeded my expectations!"
+]
+
+movies.each do |movie|
+  3.times do
+    Review.create!(
+      name: names.sample,
+      stars: rand(1..5),
+      comment: comments.sample,
+      movie: movie
+    )
+  end
+end
