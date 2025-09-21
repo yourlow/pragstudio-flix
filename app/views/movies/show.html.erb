@@ -13,6 +13,7 @@
       <%= truncate(@movie.description, length: 150, separator: ' ') %>
     </p>
     <div class="reviews">
+      <%= average_stars(@movie) %>
       <%= link_to "Review", new_movie_review_path(@movie), class: "review" %>
       <p>
         <%= link_to "Reviews", movie_reviews_path(@movie)%>

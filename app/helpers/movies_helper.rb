@@ -13,9 +13,15 @@ module MoviesHelper
   end
 
   def trimmedDescription(movie)
-  
     if movie.description.length > 80
-      return 
+      nil
     end
+  end
+
+  def average_stars(movie)
+    average = movie.average_stars
+
+
+    average > 0 ? average : "No Reviews"
   end
 end
