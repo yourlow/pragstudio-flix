@@ -22,6 +22,15 @@ class UsersController < ApplicationController
   end
 
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user, notice: "Thanks for signing up!"
+    else
+        render :new, status: :unprocessable_entity
+    end
+  end
+
   def edit
     @user = User.find(params[:id])
   end
