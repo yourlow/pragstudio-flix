@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :require_signin, except: [ :new, :create ]
+
+  before_action :require_correct_user, only: [ :edit, :update ]
+
   def index
     @users = User.all
   end
@@ -24,7 +28,6 @@ class UsersController < ApplicationController
 
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user, notice: "Thanks for signing up!"
     else
@@ -33,12 +36,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   private
 
+  def require_correct_user
+    @user = User.find(params[:id])
 
+    unless current_user == @user
+      redirect_to events_urls
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
