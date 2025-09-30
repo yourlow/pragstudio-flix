@@ -1,6 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :set_movie
 
+  before_action :require_signin, only: [ :new, :create ]
+
   def index
     @movie = Movie.find(params[:movie_id])
 
@@ -10,13 +12,13 @@ class ReviewsController < ApplicationController
   def new
     @movie = Movie.find(params[:movie_id])
 
-    @review = @movie.reviews.new
+    @review = @movie.reviews.new(user: current_user)
   end
 
   def create
     @movie = Movie.find(params[:movie_id])
 
-    @review = @movie.reviews.new(review_params)
+    @review = @movie.reviews.new(review_params.merge(user: current_user))
 
 
     if @review.save
@@ -31,7 +33,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:name, :stars, :comment)
+    params.require(:review).permit(:stars, :comment)
   end
 
 

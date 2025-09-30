@@ -3,7 +3,8 @@ class Review < ApplicationRecord
 
   belongs_to :movie, dependent: :destroy
 
-  validates :name, presence: true
+  belongs_to :user
+
   validates :comment, length: { minimum: 4 }
 
   validates :stars, inclusion: {

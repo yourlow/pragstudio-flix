@@ -2,7 +2,7 @@
 <ul class="reviews">
   <% @reviews.each do |review| %>
     <li>
-      <%= review.name %>
+      <%= review.user.name %>
       <%= render "shared/stars", percent: review.stars_as_percent %>
       <%= review.comment %>
     </li>
