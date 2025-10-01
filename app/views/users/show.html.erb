@@ -7,3 +7,22 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<% if @user.reviews.exists?%>
+  <% @user.reviews.each do |r| %>
+    <div class="review">
+      <div class="image">
+        <%= link_to image_tag(r.movie.image_file_name), r.movie %>
+      </div>
+      <div class="title">
+        <%= link_to r.movie.title, r.movie %>
+      </div>
+      <%= pluralize(r.stars, 'star') %>
+      <div class="date">
+        <%= time_ago_in_words(r.created_at) %> ago
+      </div>
+      <p>
+        <%= r.comment %>
+      </p>
+    </div>
+  <%end %>
+<% end%>
