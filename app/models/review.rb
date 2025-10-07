@@ -5,6 +5,9 @@ class Review < ApplicationRecord
 
   belongs_to :user
 
+  has_many :likes, dependent: :destroy
+  has_many :likers, through: :likes, source: :user
+
   validates :comment, length: { minimum: 4 }
 
   validates :stars, inclusion: {
@@ -14,5 +17,9 @@ class Review < ApplicationRecord
 
   def stars_as_percent
     (stars / 5.0) * 100.0
+  end
+
+  def likes_score
+    likes.sum(:value)
   end
 end
