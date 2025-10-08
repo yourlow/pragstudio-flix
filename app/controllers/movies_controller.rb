@@ -29,7 +29,6 @@ class MoviesController < ApplicationController
     @movie = Movie.new
   end
 
-
   def create
     @movie = Movie.new(movie_params)
 
@@ -38,8 +37,6 @@ class MoviesController < ApplicationController
     else
       return render :new, status: :unprocessable_entity
     end
-
-
     redirect_to @movie
   end
 
@@ -49,9 +46,7 @@ class MoviesController < ApplicationController
     redirect_to movies_path, status: :see_other
   end
 
-
   private
-
 
   def movie_params
     params.require(:movie).permit(:title, :rating, :total_gross, :description, :released_on, :duration, :director, :image_file_name)

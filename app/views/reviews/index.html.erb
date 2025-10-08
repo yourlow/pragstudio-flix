@@ -6,9 +6,13 @@
       <%= render "shared/stars", percent: review.stars_as_percent %>
       <%= review.comment %>
       <div class="likes">
-        <%= button_to "👍", movie_review_likes_path(@movie, review, value: 1), method: :post %>
+        <% if current_user %>
+          <%= button_to "👍", movie_review_likes_path(@movie, review, value: 1), method: :post %>
+        <% end %>
         <%= review.likes_score %>
-        <%= button_to "👎", movie_review_likes_path(@movie, review, value: -1), method: :post %>
+        <% if current_user %>
+          <%= button_to "👎", movie_review_likes_path(@movie, review, value: -1), method: :post %>
+        <% end %>
       </div>
     </li>
   <% end %>

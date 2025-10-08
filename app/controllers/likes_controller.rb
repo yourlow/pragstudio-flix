@@ -16,14 +16,14 @@ def new
 end
 
 def create
-  curr_like = Like.find_by(review: @review, user: current_user)
-
-  @like = Like.new(like_params)
-  @like.review = @review
-  if @like.save
-    redirect_to @like, notice: "Like was successfully created."
-  else
-    render :new
+  ActiveRecord::Base.transaction do
+    @like = Like.find_or_initialize_by(review: @review, user: current_user)
+    @like.assign_attributes(like_params)
+    if @like.save
+      redirect_to @like, notice: "Like was successfully created."
+    else
+      render :index
+    end
   end
 end
 
@@ -46,6 +46,6 @@ private
   end
 
 def like_params
-  params.require(:like).permit(:user_id, :movie_id, :value)
+  params.permit(:review_id, :value)
 end
 end
