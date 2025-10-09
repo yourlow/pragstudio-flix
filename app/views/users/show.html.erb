@@ -7,12 +7,18 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<h2>Favourite Movies</h2>
+<div class="favourites">
+  <%@user.favourite_movies.each do |movie|%>
+    <div class="favourite">
+      <%= link_to movie.title, movie %>
+    </div>
+  <%end%>
+</div>
+<h2>Reviews</h2>
 <% if @user.reviews.exists?%>
   <% @user.reviews.each do |r| %>
     <div class="review">
-      <div class="image">
-        <%= link_to image_tag(r.movie.image_file_name), r.movie %>
-      </div>
       <div class="title">
         <%= link_to r.movie.title, r.movie %>
       </div>

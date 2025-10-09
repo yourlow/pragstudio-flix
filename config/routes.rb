@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :reviews do
       resources :likes
     end
+    resources :favourites
   end
 
   resource :session, only: [ :new, :create, :destroy ]

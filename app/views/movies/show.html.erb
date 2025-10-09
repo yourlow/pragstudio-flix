@@ -1,26 +1,47 @@
-<section class="movie-details">
-  <div class="image">
-    <%= image_tag @movie.image_file_name%>
-  </div>
-  <div class="details">
-    <h2>
-      <%= @movie.title %>
-    </h2>
-    <h3>
-      <%= revenue(@movie) %>
-    </h3>
-    <p>
-      <%= truncate(@movie.description, length: 150, separator: ' ') %>
-    </p>
-    <div class="reviews">
-      <%= average_stars(@movie) %>
-      <%= link_to "Review", new_movie_review_path(@movie), class: "review" %>
-      <p>
-        <%= link_to "Reviews", movie_reviews_path(@movie)%>
-      </p>
+<div style="display: flex; gap: 2rem;">
+  <section class="movie-details" style="flex: 1;">
+    <div class="image">
+      <%= image_tag @movie.image_file_name%>
     </div>
-  </div>
-</section>
+    <div class="details">
+      <h2>
+        <%= @movie.title %>
+      </h2>
+      <h3>
+        <%= revenue(@movie) %>
+      </h3>
+      <p>
+        <%= truncate(@movie.description, length: 150, separator: ' ') %>
+      </p>
+      <div class="reviews">
+        <%= average_stars(@movie) %>
+        <%= link_to "Review", new_movie_review_path(@movie), class: "review" %>
+        <p>
+          <%= link_to "Reviews", movie_reviews_path(@movie)%>
+        </p>
+      </div>
+      <% if current_user %>
+        <div class="favourite">
+          <% if favourite = current_user.favourite_for(@movie) %>
+            <%= button_to "♥", movie_favourite_path(@movie, favourite), method: :delete %>
+          <% else %>
+            <%= button_to "♡", movie_favourites_path(@movie), method: :post %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+  <aside style="flex: 0 0 250px;">
+    <h2>Favourited By</h2>
+    <div class="favouriters">
+      <% @movie.favouriters.each do |user| %>
+        <div class="favouriter">
+          <%= link_to user.name, user %>
+        </div>
+      <% end %>
+    </div>
+  </aside>
+</div>
 <% if current_user && current_user.admin? %>
   <section class="admin">
     <%= link_to "Edit", edit_movie_path(@movie), class: "button"%>
